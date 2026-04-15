@@ -27,10 +27,13 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-
 @keyframes sway{0%,100%{transform:rotate(-5deg);}50%{transform:rotate(5deg);}}
 .brand-name{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--ink);}
 .brand-name em{font-style:italic;color:var(--violet);}
+.header-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
 .main-nav{display:flex;gap:4px;background:var(--white);border:1px solid var(--border);border-radius:var(--rpill);padding:4px;}
 .nav-btn{background:transparent;border:none;border-radius:var(--rpill);padding:7px 18px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Jost',sans-serif;color:var(--muted);transition:all .2s;}
 .nav-btn.active{background:var(--violet);color:var(--white);}
 .nav-btn:hover:not(.active){background:var(--lavender);color:var(--violet);}
+.backup-btn{background:transparent;border:1.5px solid var(--border2);border-radius:var(--rpill);padding:7px 14px;font-size:12px;font-weight:500;cursor:pointer;font-family:'Jost',sans-serif;color:var(--muted);transition:all .2s;display:flex;align-items:center;gap:5px;}
+.backup-btn:hover{background:var(--mint);border-color:var(--sage);color:var(--sage);}
 
 /* PAGES */
 .pages{flex:1;}
@@ -80,82 +83,60 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-
 .capture-btn .cb-label{font-size:12px;font-weight:500;color:var(--ink);}
 .capture-btn .cb-sub{font-size:10px;color:var(--muted);margin-top:2px;}
 .capture-btn.camera-live{border-color:var(--sage);}
-.capture-btn.camera-live:hover{background:rgba(212,239,227,.3);}
-
-/* CAMERA MODAL */
-.camera-overlay{position:fixed;inset:0;background:rgba(46,37,53,.88);z-index:200;display:none;flex-direction:column;align-items:center;justify-content:center;padding:1rem;}
-.camera-overlay.open{display:flex;}
-.camera-container{width:min(90vw,480px);background:var(--ink);border-radius:var(--r);overflow:hidden;}
-.camera-header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(255,255,255,.05);}
-.camera-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--white);}
-.camera-close{background:transparent;border:none;color:var(--white);font-size:18px;cursor:pointer;opacity:.7;transition:opacity .2s;}
-.camera-close:hover{opacity:1;}
-#camera-video{width:100%;display:block;max-height:60vh;object-fit:cover;}
-#camera-canvas{display:none;}
-.camera-controls{display:flex;gap:10px;padding:14px 16px;justify-content:center;background:rgba(255,255,255,.05);}
-.shutter-btn{width:64px;height:64px;border-radius:50%;background:var(--white);border:4px solid rgba(255,255,255,.4);cursor:pointer;transition:transform .15s,background .15s;display:flex;align-items:center;justify-content:center;font-size:22px;}
-.shutter-btn:hover{transform:scale(1.07);background:var(--lavender);}
-.cam-action-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:var(--white);border-radius:var(--rpill);padding:8px 16px;font-size:12px;cursor:pointer;font-family:'Jost',sans-serif;transition:background .2s;}
-.cam-action-btn:hover{background:rgba(255,255,255,.22);}
-.camera-tip{font-size:11px;color:rgba(255,255,255,.5);text-align:center;padding:0 16px 12px;}
-
-/* BG REMOVAL PREVIEW */
-.bg-removal-panel{display:none;padding:12px 16px;background:rgba(255,255,255,.05);border-top:1px solid rgba(255,255,255,.08);}
-.bg-removal-panel.show{display:block;}
-.bg-preview-row{display:flex;gap:10px;align-items:center;margin-bottom:10px;}
-.bg-preview-img{width:80px;height:80px;object-fit:contain;border-radius:8px;border:1px solid rgba(255,255,255,.15);}
-.bg-preview-img.checkerboard{background-image:linear-gradient(45deg,#555 25%,transparent 25%),linear-gradient(-45deg,#555 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#555 75%),linear-gradient(-45deg,transparent 75%,#555 75%);background-size:12px 12px;background-position:0 0,0 6px,6px -6px,-6px 0px;}
-.bg-label{font-size:11px;color:rgba(255,255,255,.6);}
-.bg-arrow{font-size:18px;color:rgba(255,255,255,.4);}
-.bg-spinner{width:32px;height:32px;border:3px solid rgba(255,255,255,.2);border-top-color:var(--violet);border-radius:50%;animation:spin .8s linear infinite;}
-@keyframes spin{to{transform:rotate(360deg);}}
 
 /* ANALYZING */
 .ai-analyzing{display:none;text-align:center;padding:1.5rem;}
 .ai-analyzing.show{display:block;}
-.analyzing-spinner{width:44px;height:44px;border:3px solid var(--lavender);border-top-color:var(--violet);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 12px;}
+.analyzing-spinner{width:44px;height:44px;border:3px solid var(--lavender);border-top-color:var(--violet);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px;}
+@keyframes spin{to{transform:rotate(360deg);}}
 .analyzing-text{font-size:14px;color:var(--muted);}
 .analyzing-dots::after{content:'';animation:dots 1.5s steps(4,end) infinite;}
 @keyframes dots{0%,20%{content:'';}40%{content:'.';}60%{content:'..';}80%,100%{content:'...'}}
 .ai-result{display:none;margin-top:1rem;}
 .ai-result.show{display:flex;align-items:flex-start;gap:12px;}
-.ai-result-photo{width:72px;height:72px;object-fit:contain;border-radius:10px;border:1.5px solid var(--border);background-image:linear-gradient(45deg,#ddd 25%,transparent 25%),linear-gradient(-45deg,#ddd 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ddd 75%),linear-gradient(-45deg,transparent 75%,#ddd 75%);background-size:8px 8px;background-position:0 0,0 4px,4px -4px,-4px 0;}
-.ai-result-info{flex:1;}
+.ai-result-photo{width:72px;height:72px;object-fit:contain;border-radius:10px;border:1.5px solid var(--border);}
 .ai-result-badge{background:linear-gradient(135deg,rgba(212,121,138,.12),rgba(138,117,194,.12));border:1px solid var(--border2);border-radius:var(--rpill);padding:3px 12px;font-size:11px;color:var(--violet);font-weight:500;display:inline-block;margin-bottom:4px;}
 .ai-result-note{font-size:11px;color:var(--muted);}
 
 /* FORM */
 .form-panel{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin-bottom:1.5rem;display:none;animation:fadeDown .3s ease both;}
 .form-panel.open{display:block;}
-.form-panel h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;margin-bottom:.25rem;color:var(--ink);}
-.form-optional-note{font-size:11px;color:var(--muted);margin-bottom:1rem;}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-panel h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;margin-bottom:.2rem;color:var(--ink);}
+.form-optional-note{font-size:11px;color:var(--muted);margin-bottom:1.2rem;}
+
+/* VOICE ENTRY BLOCK */
+.voice-entry{background:linear-gradient(135deg,rgba(212,121,138,.06),rgba(138,117,194,.08));border:1.5px solid var(--border2);border-radius:var(--r);padding:1.2rem;margin-bottom:1.2rem;}
+.voice-entry-title{font-size:12px;font-weight:500;color:var(--violet);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.4rem;}
+.voice-entry-hint{font-size:12px;color:var(--muted);margin-bottom:.9rem;line-height:1.5;}
+.voice-entry-hint em{font-style:italic;color:var(--ink);}
+.big-mic-btn{width:100%;padding:14px;border-radius:var(--r);border:2px solid var(--rose);background:transparent;cursor:pointer;font-family:'Jost',sans-serif;font-size:14px;font-weight:500;color:var(--rose);display:flex;align-items:center;justify-content:center;gap:10px;transition:all .25s;}
+.big-mic-btn:hover{background:rgba(212,121,138,.08);}
+.big-mic-btn.listening{background:var(--rose);color:var(--white);border-color:var(--rose);animation:none;}
+.big-mic-btn.listening .mic-icon{animation:pulse .7s ease infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.2);}}
+.mic-icon{font-size:20px;}
+.voice-transcript{margin-top:.8rem;background:var(--cream);border-radius:var(--rsm);padding:10px 12px;font-size:13px;color:var(--ink);min-height:36px;border:1px solid var(--border);display:none;line-height:1.5;}
+.voice-transcript.show{display:block;}
+.voice-parsing{font-size:11px;color:var(--violet);margin-top:.5rem;display:none;}
+.voice-parsing.show{display:block;}
+
+/* FORM GRID */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .fg{display:flex;flex-direction:column;gap:5px;}
 .fg.full{grid-column:1/-1;}
-.fg label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;display:flex;align-items:center;gap:6px;}
-.field-row{display:flex;gap:6px;align-items:center;}
-.field-row input,.field-row select{flex:1;}
+.fg label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;}
 .fg input,.fg select{border:1.5px solid var(--lavender);border-radius:var(--rsm);padding:9px 12px;font-size:14px;font-family:'Jost',sans-serif;color:var(--ink);background:var(--cream);outline:none;transition:border-color .2s,box-shadow .2s;width:100%;}
 .fg input:focus,.fg select:focus{border-color:var(--violet);box-shadow:0 0 0 3px rgba(138,117,194,.12);}
-.fg input.ai-filled{border-color:var(--sage);background:rgba(212,239,227,.15);}
-
-/* MIC BUTTON */
-.mic-btn{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border2);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .2s;flex-shrink:0;color:var(--muted);}
-.mic-btn:hover{border-color:var(--rose);background:rgba(212,121,138,.08);color:var(--rose);}
-.mic-btn.listening{border-color:var(--rose);background:var(--rose);color:var(--white);animation:pulse .8s ease infinite;}
-@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.12);}}
-.mic-hint{font-size:10px;color:var(--rose);margin-top:3px;display:none;}
-.mic-hint.show{display:block;}
+.fg input.ai-filled,.fg select.ai-filled{border-color:var(--sage);background:rgba(212,239,227,.15);}
+.fg input.voice-filled,.fg select.voice-filled{border-color:var(--rose);background:rgba(212,121,138,.06);}
 
 /* PHOTO ZONE */
 .photo-zone{border:2px dashed var(--border2);border-radius:var(--r);padding:14px;text-align:center;cursor:pointer;transition:all .2s;position:relative;background:rgba(232,224,245,.1);}
 .photo-zone:hover{border-color:var(--violet);background:rgba(232,224,245,.25);}
 .photo-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
 .photo-zone-inner{pointer-events:none;}
-.pz-icon{font-size:22px;margin-bottom:2px;}
-.pz-text{font-size:12px;color:var(--muted);}
 .photo-preview{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px;justify-content:center;pointer-events:none;}
-.photo-preview img{width:64px;height:64px;object-fit:contain;border-radius:8px;border:1.5px solid var(--white);box-shadow:0 2px 8px rgba(0,0,0,.08);background-image:linear-gradient(45deg,#eee 25%,transparent 25%),linear-gradient(-45deg,#eee 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#eee 75%),linear-gradient(-45deg,transparent 75%,#eee 75%);background-size:8px 8px;background-position:0 0,0 4px,4px -4px,-4px 0;}
+.photo-preview img{width:64px;height:64px;object-fit:contain;border-radius:8px;border:1.5px solid var(--white);box-shadow:0 2px 8px rgba(0,0,0,.08);}
 .form-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:1.2rem;}
 .btn-cancel{background:transparent;border:1.5px solid var(--border2);border-radius:var(--rpill);padding:8px 18px;font-size:13px;cursor:pointer;color:var(--muted);font-family:'Jost',sans-serif;transition:background .2s;}
 .btn-cancel:hover{background:var(--lavender);}
@@ -174,7 +155,7 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-
 .item-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(138,117,194,.14);}
 @keyframes popIn{from{opacity:0;transform:scale(.97) translateY(6px);}to{opacity:1;transform:scale(1) translateY(0);}}
 .item-photo-area{width:100%;height:150px;display:flex;align-items:center;justify-content:center;font-size:42px;overflow:hidden;}
-.item-photo-area.transparent-bg{background-image:linear-gradient(45deg,#f0eef5 25%,transparent 25%),linear-gradient(-45deg,#f0eef5 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#f0eef5 75%),linear-gradient(-45deg,transparent 75%,#f0eef5 75%);background-size:14px 14px;background-position:0 0,0 7px,7px -7px,-7px 0;}
+.item-photo-area.tbg{background-image:linear-gradient(45deg,#f0eef5 25%,transparent 25%),linear-gradient(-45deg,#f0eef5 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#f0eef5 75%),linear-gradient(-45deg,transparent 75%,#f0eef5 75%);background-size:14px 14px;background-position:0 0,0 7px,7px -7px,-7px 0;}
 .item-photo-area img{width:100%;height:150px;object-fit:contain;display:block;}
 .item-body{padding:10px 12px 12px;}
 .item-name-c{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -198,16 +179,15 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-
 .look-builder.open{display:block;}
 .look-builder h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;margin-bottom:1rem;}
 .look-name-row{margin-bottom:1rem;}
-.look-name-row input{width:100%;border:1.5px solid var(--lavender);border-radius:var(--rsm);padding:9px 12px;font-size:14px;font-family:'Jost',sans-serif;color:var(--ink);background:var(--cream);outline:none;transition:border-color .2s;}
-.look-name-row input:focus{border-color:var(--violet);}
+.look-name-row input{width:100%;border:1.5px solid var(--lavender);border-radius:var(--rsm);padding:9px 12px;font-size:14px;font-family:'Jost',sans-serif;color:var(--ink);background:var(--cream);outline:none;}
 .look-slots{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:.75rem;}
 .look-slot{width:96px;height:115px;border:2px dashed var(--border2);border-radius:var(--rsm);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;cursor:pointer;position:relative;overflow:hidden;transition:all .2s;background:rgba(232,224,245,.1);}
 .look-slot:hover{border-color:var(--violet);background:rgba(232,224,245,.3);}
 .look-slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;}
-.look-slot.has-transparent-item{background-image:linear-gradient(45deg,#f0eef5 25%,transparent 25%),linear-gradient(-45deg,#f0eef5 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#f0eef5 75%),linear-gradient(-45deg,transparent 75%,#f0eef5 75%);background-size:10px 10px;background-position:0 0,0 5px,5px -5px,-5px 0;}
+.look-slot.tbg{background-image:linear-gradient(45deg,#f0eef5 25%,transparent 25%),linear-gradient(-45deg,#f0eef5 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#f0eef5 75%),linear-gradient(-45deg,transparent 75%,#f0eef5 75%);background-size:10px 10px;background-position:0 0,0 5px,5px -5px,-5px 0;}
 .look-slot .slot-emoji{font-size:22px;pointer-events:none;}
 .look-slot .slot-lbl{font-size:10px;color:var(--softer);text-align:center;line-height:1.2;pointer-events:none;}
-.look-slot .slot-name-overlay{position:absolute;bottom:0;left:0;right:0;font-size:9px;background:rgba(255,255,255,.82);color:var(--ink);padding:3px 4px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.look-slot .slot-overlay{position:absolute;bottom:0;left:0;right:0;font-size:9px;background:rgba(255,255,255,.82);color:var(--ink);padding:3px 4px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .rm-slot{position:absolute;top:3px;right:3px;background:rgba(255,255,255,.9);border:none;border-radius:50%;width:18px;height:18px;font-size:10px;cursor:pointer;display:none;align-items:center;justify-content:center;color:var(--rose);z-index:2;}
 .look-slot:hover .rm-slot{display:flex;}
 .looks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;}
@@ -217,12 +197,35 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-
 .look-card-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:400;color:var(--ink);}
 .look-card-date{font-size:11px;color:var(--softer);}
 .look-strip{display:flex;gap:6px;padding:0 14px 12px;flex-wrap:wrap;}
-.look-thumb{width:58px;height:70px;border-radius:8px;object-fit:contain;border:1.5px solid var(--border);background:var(--lavender);display:flex;align-items:center;justify-content:center;font-size:20px;overflow:hidden;flex-shrink:0;}
+.look-thumb{width:58px;height:70px;border-radius:8px;border:1.5px solid var(--border);background:var(--lavender);display:flex;align-items:center;justify-content:center;font-size:20px;overflow:hidden;flex-shrink:0;}
 .look-thumb img{width:100%;height:100%;object-fit:contain;display:block;}
 .look-card-ft{padding:8px 14px 12px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
 .look-total{font-size:12px;color:var(--muted);}
 .look-del{background:transparent;border:none;font-size:12px;cursor:pointer;color:var(--softer);font-family:'Jost',sans-serif;transition:color .18s;}
 .look-del:hover{color:var(--rose);}
+
+/* CAMERA MODAL */
+.camera-overlay{position:fixed;inset:0;background:rgba(46,37,53,.88);z-index:200;display:none;flex-direction:column;align-items:center;justify-content:center;padding:1rem;}
+.camera-overlay.open{display:flex;}
+.camera-container{width:min(90vw,480px);background:#1a1520;border-radius:var(--r);overflow:hidden;}
+.camera-header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(255,255,255,.05);}
+.camera-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--white);}
+.camera-close-btn{background:transparent;border:none;color:var(--white);font-size:18px;cursor:pointer;opacity:.7;}
+.camera-close-btn:hover{opacity:1;}
+#camera-video{width:100%;display:block;max-height:55vh;object-fit:cover;}
+#camera-canvas{display:none;}
+.bg-preview-row{display:flex;gap:10px;align-items:center;padding:12px 16px;background:rgba(255,255,255,.04);display:none;}
+.bg-preview-row.show{display:flex;}
+.bg-preview-img{width:72px;height:72px;object-fit:contain;border-radius:8px;border:1px solid rgba(255,255,255,.15);}
+.bg-check{background-image:linear-gradient(45deg,#444 25%,transparent 25%),linear-gradient(-45deg,#444 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#444 75%),linear-gradient(-45deg,transparent 75%,#444 75%);background-size:10px 10px;background-position:0 0,0 5px,5px -5px,-5px 0;}
+.bg-arrow{font-size:18px;color:rgba(255,255,255,.4);}
+.bg-spinner-sm{width:28px;height:28px;border:2px solid rgba(255,255,255,.2);border-top-color:var(--violet);border-radius:50%;animation:spin .7s linear infinite;}
+.camera-controls{display:flex;gap:12px;padding:14px 16px;justify-content:center;align-items:center;background:rgba(255,255,255,.04);}
+.shutter-btn{width:60px;height:60px;border-radius:50%;background:var(--white);border:4px solid rgba(255,255,255,.35);cursor:pointer;transition:transform .15s;font-size:20px;display:flex;align-items:center;justify-content:center;}
+.shutter-btn:hover{transform:scale(1.08);}
+.cam-sm-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:var(--white);border-radius:var(--rpill);padding:8px 14px;font-size:12px;cursor:pointer;font-family:'Jost',sans-serif;transition:background .2s;}
+.cam-sm-btn:hover{background:rgba(255,255,255,.2);}
+.camera-tip{font-size:11px;color:rgba(255,255,255,.4);text-align:center;padding:0 16px 12px;}
 
 /* MODALS */
 .overlay{position:fixed;inset:0;background:rgba(46,37,53,.45);z-index:100;display:none;align-items:center;justify-content:center;padding:1rem;}
@@ -238,6 +241,8 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-
 .modal-close{position:absolute;top:10px;right:12px;background:rgba(255,255,255,.85);border:none;border-radius:50%;width:28px;height:28px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink);z-index:5;}
 .extra-photos{display:flex;gap:6px;flex-wrap:wrap;margin-top:.8rem;}
 .extra-photos img{width:58px;height:58px;object-fit:contain;border-radius:8px;border:1.5px solid var(--border);}
+
+/* PICKER */
 .picker-modal{background:var(--white);border-radius:var(--r);padding:1.5rem;width:min(90vw,540px);max-height:80vh;overflow-y:auto;animation:fadeDown .25s ease;}
 .picker-modal h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;margin-bottom:1rem;}
 .picker-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;}
@@ -251,23 +256,28 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-
 .picker-sub{font-size:10px;color:var(--muted);}
 .picker-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:1rem;}
 
+/* BACKUP MODAL */
+.backup-modal{background:var(--white);border-radius:var(--r);padding:1.5rem;width:min(90vw,440px);animation:fadeDown .25s ease;}
+.backup-modal h3{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;margin-bottom:.4rem;}
+.backup-modal p{font-size:13px;color:var(--muted);margin-bottom:1.2rem;line-height:1.6;}
+.backup-actions{display:flex;flex-direction:column;gap:10px;}
+.backup-action-btn{display:flex;align-items:center;gap:12px;padding:14px 16px;border:1.5px solid var(--border2);border-radius:var(--r);cursor:pointer;background:transparent;font-family:'Jost',sans-serif;transition:all .2s;text-align:left;width:100%;}
+.backup-action-btn:hover{border-color:var(--violet);background:rgba(232,224,245,.2);}
+.backup-action-btn .ba-icon{font-size:26px;flex-shrink:0;}
+.backup-action-btn .ba-text .ba-title{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:2px;}
+.backup-action-btn .ba-text .ba-sub{font-size:11px;color:var(--muted);}
+.backup-action-btn.restore-btn{border-color:var(--sage);}
+.backup-action-btn.restore-btn:hover{background:rgba(212,239,227,.3);}
+.restore-input{display:none;}
+.backup-close{margin-top:1rem;width:100%;background:transparent;border:1.5px solid var(--border2);border-radius:var(--rpill);padding:9px;font-size:13px;cursor:pointer;color:var(--muted);font-family:'Jost',sans-serif;}
+
 /* TOAST */
 .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:var(--ink);color:var(--white);padding:10px 22px;border-radius:var(--rpill);font-size:13px;z-index:300;transition:transform .3s ease;white-space:nowrap;pointer-events:none;}
 .toast.show{transform:translateX(-50%) translateY(0);}
 
-/* Voice indicator */
-.voice-bar{display:flex;align-items:flex-end;gap:2px;height:16px;}
-.voice-bar span{width:3px;background:var(--white);border-radius:2px;animation:voiceWave .6s ease infinite;}
-.voice-bar span:nth-child(1){animation-delay:0s;}
-.voice-bar span:nth-child(2){animation-delay:.1s;}
-.voice-bar span:nth-child(3){animation-delay:.2s;}
-.voice-bar span:nth-child(4){animation-delay:.15s;}
-.voice-bar span:nth-child(5){animation-delay:.05s;}
-@keyframes voiceWave{0%,100%{height:4px;}50%{height:14px;}}
-
 ::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:var(--lavender);border-radius:3px;}
 
-@media(max-width:520px){
+@media(max-width:560px){
   .site-header,.page{padding-left:1rem;padding-right:1rem;}
   .stats-row{grid-template-columns:1fr 1fr;}.stats-row .stat-card:nth-child(3){grid-column:1/-1;}
   .form-grid{grid-template-columns:1fr;}.fg.full{grid-column:1;}
@@ -275,6 +285,7 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-
   .capture-options{grid-template-columns:1fr 1fr;}
   .btn-group{width:100%;}
   .ai-btn,.add-btn{flex:1;justify-content:center;}
+  .header-right{width:100%;}
 }
 </style>
 </head>
@@ -289,24 +300,30 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-
       <div class="brand-icon">🪡</div>
       <div class="brand-name">My <em>Closet</em> ✿</div>
     </div>
-    <nav class="main-nav">
-      <button class="nav-btn active" onclick="showPage('wardrobe',this)">👗 Wardrobe</button>
-      <button class="nav-btn" onclick="showPage('looks',this)">✨ Looks</button>
-    </nav>
+    <div class="header-right">
+      <button class="backup-btn" onclick="openBackup()">💾 Backup</button>
+      <nav class="main-nav">
+        <button class="nav-btn active" onclick="showPage('wardrobe',this)">👗 Wardrobe</button>
+        <button class="nav-btn" onclick="showPage('looks',this)">✨ Looks</button>
+      </nav>
+    </div>
   </div>
 
   <div class="pages">
     <div class="page active" id="page-wardrobe">
+
       <div class="loc-tabs">
         <button class="loc-tab active" onclick="setLoc('NY',this)">🗽 New York</button>
         <button class="loc-tab" onclick="setLoc('NJ',this)">🌿 New Jersey</button>
         <button class="loc-tab" onclick="setLoc('MAD',this)">🇪🇸 Madrid</button>
       </div>
+
       <div class="stats-row">
         <div class="stat-card"><div class="stat-label">Pieces here</div><div class="stat-value" id="s-count">0</div></div>
         <div class="stat-card"><div class="stat-label">Total value</div><div class="stat-value" id="s-val">$0</div></div>
         <div class="stat-card"><div class="stat-label">Designers</div><div class="stat-value" id="s-des">0</div></div>
       </div>
+
       <div class="top-row">
         <div class="section-title">My <em>wardrobe</em></div>
         <div class="btn-group">
@@ -318,23 +335,20 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-
       <!-- AI PANEL -->
       <div class="ai-panel" id="ai-panel">
         <div class="ai-panel-title">AI Photo Recognition ✦</div>
-        <div class="ai-panel-sub">Snap a photo, upload one, or drag and drop — Claude identifies the garment and removes the background automatically.</div>
+        <div class="ai-panel-sub">Snap, upload or drag a photo — Claude identifies it and removes the background. Then just speak your description and save.</div>
         <div class="capture-options">
-          <!-- Live camera -->
           <button class="capture-btn camera-live" onclick="openCamera()">
             <div class="cb-icon">📷</div>
             <div class="cb-label">Take Photo</div>
             <div class="cb-sub">Use camera</div>
           </button>
-          <!-- Upload file -->
           <div class="capture-btn" style="position:relative;">
             <input type="file" accept="image/*" id="ai-upload-input" onchange="handleAIFile(event)"/>
             <div class="cb-icon">🖼️</div>
             <div class="cb-label">Upload Photo</div>
             <div class="cb-sub">From library</div>
           </div>
-          <!-- Drop zone -->
-          <div class="capture-btn" id="drop-zone-btn" ondragover="event.preventDefault();this.style.borderColor='var(--violet)'" ondragleave="this.style.borderColor=''" ondrop="handleDrop(event)">
+          <div class="capture-btn" ondragover="event.preventDefault();this.style.borderColor='var(--violet)'" ondragleave="this.style.borderColor=''" ondrop="handleDrop(event)">
             <div class="cb-icon">⬇️</div>
             <div class="cb-label">Drag & Drop</div>
             <div class="cb-sub">Any image</div>
@@ -346,9 +360,9 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-
         </div>
         <div class="ai-result" id="ai-result">
           <img id="ai-result-photo" src="" alt="" class="ai-result-photo"/>
-          <div class="ai-result-info">
-            <div class="ai-result-badge">✦ AI pre-filled · background removed</div>
-            <div class="ai-result-note" style="margin-top:4px;">Green fields were filled by Claude. All fields optional — just hit Save when ready.</div>
+          <div>
+            <div class="ai-result-badge">✦ AI identified · background removed</div>
+            <div class="ai-result-note" style="margin-top:4px;">Fields pre-filled below. Use the voice button to describe the rest — or just hit Save.</div>
           </div>
         </div>
       </div>
@@ -356,7 +370,20 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-
       <!-- FORM -->
       <div class="form-panel" id="add-form">
         <h3 id="form-title">Add a new piece ✦</h3>
-        <div class="form-optional-note">All fields are optional — fill in what you know and save anytime.</div>
+        <div class="form-optional-note">All fields optional — speak, type, or just save with a photo.</div>
+
+        <!-- SINGLE VOICE ENTRY -->
+        <div class="voice-entry">
+          <div class="voice-entry-title">🎤 Voice description</div>
+          <div class="voice-entry-hint">Tap the mic and describe the item naturally:<br/><em>"Tom Ford black leather bag, Madrid, eight hundred dollars, bought last year"</em></div>
+          <button class="big-mic-btn" id="big-mic" onclick="toggleVoice()">
+            <span class="mic-icon">🎤</span>
+            <span id="mic-label">Tap to speak</span>
+          </button>
+          <div class="voice-transcript" id="voice-transcript"></div>
+          <div class="voice-parsing" id="voice-parsing">✦ Parsing your description<span class="analyzing-dots"></span></div>
+        </div>
+
         <div class="form-grid">
           <div class="fg">
             <label>Garment type</label>
@@ -372,40 +399,36 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-
             </select>
           </div>
           <div class="fg">
-            <label>Designer / Brand <span style="font-size:9px;color:var(--softer);text-transform:none;letter-spacing:0;">(tap 🎤 to speak)</span></label>
-            <div class="field-row">
-              <input type="text" id="f-designer" placeholder="e.g. Prada, Zara…"/>
-              <button class="mic-btn" onclick="startDictation('f-designer',this)" title="Speak to fill">🎤</button>
-            </div>
-            <div class="mic-hint" id="hint-f-designer">Listening… speak now</div>
+            <label>Designer / Brand</label>
+            <input type="text" id="f-designer" placeholder="e.g. Prada, Zara…"/>
           </div>
           <div class="fg full">
-            <label>Item name / description <span style="font-size:9px;color:var(--softer);text-transform:none;letter-spacing:0;">(tap 🎤 to speak)</span></label>
-            <div class="field-row">
-              <input type="text" id="f-name" placeholder="e.g. Black leather trench coat"/>
-              <button class="mic-btn" onclick="startDictation('f-name',this)" title="Speak to fill">🎤</button>
-            </div>
-            <div class="mic-hint" id="hint-f-name">Listening… speak now</div>
+            <label>Item name / description</label>
+            <input type="text" id="f-name" placeholder="e.g. Black leather trench coat"/>
           </div>
           <div class="fg">
             <label>Date of purchase</label>
             <input type="date" id="f-date"/>
           </div>
           <div class="fg">
-            <label>Price ($) <span style="font-size:9px;color:var(--softer);text-transform:none;letter-spacing:0;">(tap 🎤 to speak)</span></label>
-            <div class="field-row">
-              <input type="text" id="f-price" placeholder="e.g. 250"/>
-              <button class="mic-btn" onclick="startDictation('f-price',this)" title="Speak price">🎤</button>
-            </div>
-            <div class="mic-hint" id="hint-f-price">Listening… speak now</div>
+            <label>Price ($)</label>
+            <input type="text" id="f-price" placeholder="e.g. 1200"/>
+          </div>
+          <div class="fg">
+            <label>Location</label>
+            <select id="f-location">
+              <option value="NY">🗽 New York</option>
+              <option value="NJ">🌿 New Jersey</option>
+              <option value="MAD">🇪🇸 Madrid</option>
+            </select>
           </div>
           <div class="fg full">
             <label>More photos</label>
-            <div class="photo-zone" id="photo-zone">
+            <div class="photo-zone">
               <input type="file" accept="image/*" multiple id="photo-input" onchange="handlePhotos(event)"/>
               <div class="photo-zone-inner">
-                <div class="pz-icon">📷</div>
-                <div class="pz-text">Add more photos</div>
+                <div style="font-size:22px;">📷</div>
+                <div style="font-size:12px;color:var(--muted);">Add more photos</div>
               </div>
               <div class="photo-preview" id="photo-preview"></div>
             </div>
@@ -447,24 +470,22 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-
   <div class="camera-container">
     <div class="camera-header">
       <div class="camera-title">Take a photo ✦</div>
-      <button class="camera-close" onclick="closeCamera()">✕</button>
+      <button class="camera-close-btn" onclick="closeCamera()">✕</button>
     </div>
     <video id="camera-video" autoplay playsinline></video>
     <canvas id="camera-canvas"></canvas>
-    <div class="bg-removal-panel" id="bg-removal-panel">
-      <div class="bg-preview-row">
-        <img id="bg-original" src="" alt="" class="bg-preview-img"/>
-        <div class="bg-arrow">→</div>
-        <div id="bg-processing" style="display:none;"><div class="bg-spinner"></div></div>
-        <img id="bg-result" src="" alt="" class="bg-preview-img checkerboard" style="display:none;"/>
-      </div>
+    <div class="bg-preview-row" id="bg-preview-row">
+      <img id="bg-original" src="" class="bg-preview-img" alt=""/>
+      <div class="bg-arrow">→</div>
+      <div id="bg-spinner-wrap"><div class="bg-spinner-sm"></div></div>
+      <img id="bg-result-img" src="" class="bg-preview-img bg-check" style="display:none;" alt=""/>
     </div>
     <div class="camera-controls">
-      <button class="cam-action-btn" onclick="switchCamera()">🔄 Flip</button>
-      <button class="shutter-btn" onclick="capturePhoto()" title="Take photo">📸</button>
-      <button class="cam-action-btn" id="use-photo-btn" onclick="usePhoto()" style="display:none;">Use ✓</button>
+      <button class="cam-sm-btn" onclick="switchCamera()">🔄 Flip</button>
+      <button class="shutter-btn" onclick="capturePhoto()">📸</button>
+      <button class="cam-sm-btn" id="use-photo-btn" onclick="usePhoto()" style="display:none;">Use ✓</button>
     </div>
-    <div class="camera-tip">Position your garment flat or on a hanger for best results</div>
+    <div class="camera-tip">Lay garment flat or hang it for the cleanest shot</div>
   </div>
 </div>
 
@@ -497,16 +518,43 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-
   </div>
 </div>
 
+<!-- BACKUP MODAL -->
+<div class="overlay" id="backup-ov" onclick="if(event.target===this)closeBackup()">
+  <div class="backup-modal" onclick="event.stopPropagation()">
+    <h3>Backup & Restore ✦</h3>
+    <p>Save your entire closet — all items, photos, and looks — into a single file. Store it in iCloud, Google Drive, or anywhere safe.</p>
+    <div class="backup-actions">
+      <button class="backup-action-btn" onclick="doExport()">
+        <div class="ba-icon">💾</div>
+        <div class="ba-text">
+          <div class="ba-title">Download backup</div>
+          <div class="ba-sub">Saves everything as a .json file including all photos</div>
+        </div>
+      </button>
+      <label class="backup-action-btn restore-btn" style="cursor:pointer;">
+        <input type="file" accept=".json" class="restore-input" onchange="doImport(event)"/>
+        <div class="ba-icon">📂</div>
+        <div class="ba-text">
+          <div class="ba-title">Restore from backup</div>
+          <div class="ba-sub">Load a previously saved .json backup file</div>
+        </div>
+      </label>
+    </div>
+    <button class="backup-close" onclick="closeBackup()">Close</button>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
 // ── DATA ──
-const DB='closet_v6',LK='looks_v4';
+const DB='closet_v7',LK='looks_v5';
 const load=k=>{try{return JSON.parse(localStorage.getItem(k)||'[]');}catch{return[];}};
 const persist=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
 let items=load(DB),looks=load(LK);
 let curLoc='NY',curFilter='All',pendingPhotos=[],aiPhotoBase64=null,bgRemovedBase64=null;
-let cameraStream=null,facingMode='environment',capturedPhotoBase64=null;
+let cameraStream=null,facingMode='environment',capturedPhoto=null;
+let recognition=null,isListening=false;
 
 // ── ICONS / COLORS ──
 const ICONS={Jacket:'🧥',Coat:'🧥',Blazer:'👔',Dress:'👗',Skirt:'👗',Trousers:'👖',Jeans:'👖',Shorts:'🩳',Top:'👕',Shirt:'👕',Blouse:'👚',Sweater:'🧶',Cardigan:'🧶',Shoes:'👠',Boots:'👢',Sneakers:'👟',Bag:'👜',Accessory:'💍',Other:'🏷️'};
@@ -535,207 +583,269 @@ function setLoc(loc,btn){
   curLoc=loc;curFilter='All';
   document.querySelectorAll('.loc-tab').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
+  // sync location dropdown in form
+  const fl=document.getElementById('f-location');
+  if(fl)fl.value=loc;
   render();
+}
+
+// ══════════════════════════════════════════════
+// VOICE — SINGLE MIC, CLAUDE PARSES
+// ══════════════════════════════════════════════
+function toggleVoice(){
+  if(isListening){stopVoice();return;}
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){toast('Voice not supported — try Chrome or Safari on desktop');return;}
+
+  recognition=new SR();
+  recognition.lang='en-US';
+  recognition.continuous=true;
+  recognition.interimResults=true;
+
+  const btn=document.getElementById('big-mic');
+  const lbl=document.getElementById('mic-label');
+  const transcript=document.getElementById('voice-transcript');
+
+  btn.classList.add('listening');
+  lbl.textContent='Listening… tap again to stop';
+  transcript.classList.add('show');
+  transcript.textContent='';
+  isListening=true;
+
+  recognition.onresult=e=>{
+    let full='';
+    for(let i=0;i<e.results.length;i++)full+=e.results[i][0].transcript;
+    transcript.textContent=full;
+  };
+
+  recognition.onend=()=>{
+    if(isListening){
+      // Parse what was said
+      const said=transcript.textContent.trim();
+      if(said)parseVoiceWithClaude(said);
+      isListening=false;
+      btn.classList.remove('listening');
+      lbl.textContent='Tap to speak';
+    }
+  };
+
+  recognition.onerror=e=>{
+    isListening=false;
+    btn.classList.remove('listening');
+    lbl.textContent='Tap to speak';
+    if(e.error!=='aborted')toast('Voice error: '+e.error);
+  };
+
+  recognition.start();
+}
+
+function stopVoice(){
+  isListening=false;
+  if(recognition)recognition.stop();
+}
+
+async function parseVoiceWithClaude(transcript){
+  const parsing=document.getElementById('voice-parsing');
+  parsing.classList.add('show');
+
+  const today=new Date().toISOString().slice(0,4);
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:600,
+        messages:[{
+          role:'user',
+          content:`You are a fashion wardrobe assistant. Parse this spoken item description and extract structured data. Return ONLY a valid JSON object, no markdown, no explanation:
+
+"${transcript}"
+
+JSON fields:
+{
+  "type": "one of: Jacket, Coat, Blazer, Dress, Skirt, Trousers, Jeans, Shorts, Top, Shirt, Blouse, Sweater, Cardigan, Shoes, Boots, Sneakers, Bag, Accessory, Other — or empty string if unclear",
+  "designer": "brand or designer name, empty string if not mentioned",
+  "name": "descriptive item name e.g. Black leather clutch bag, empty string if unclear",
+  "price": "numeric price only e.g. 1200, empty string if not mentioned",
+  "location": "one of NY, NJ, MAD — infer from New York/NYC=NY, New Jersey/NJ=NJ, Madrid/Spain/MAD=MAD, empty string if not mentioned",
+  "year": "4-digit year if mentioned e.g. 2023, empty string if not mentioned"
+}`
+        }]
+      })
+    });
+    const data=await res.json();
+    const text=data.content?.find(c=>c.type==='text')?.text||'{}';
+    const parsed=JSON.parse(text.replace(/```json|```/g,'').trim());
+    fillFromVoice(parsed);
+  }catch(e){
+    toast('Could not parse — check the fields manually');
+  }finally{
+    parsing.classList.remove('show');
+  }
+}
+
+function fillFromVoice(d){
+  const TYPES=['Jacket','Coat','Blazer','Dress','Skirt','Trousers','Jeans','Shorts','Top','Shirt','Blouse','Sweater','Cardigan','Shoes','Boots','Sneakers','Bag','Accessory','Other'];
+  const mark=(id,val)=>{
+    const el=document.getElementById(id);
+    if(!el||!val)return;
+    el.value=val;
+    el.classList.add('voice-filled');
+    setTimeout(()=>el.classList.remove('voice-filled'),3000);
+  };
+  if(d.type&&TYPES.includes(d.type))mark('f-type',d.type);
+  if(d.designer)mark('f-designer',d.designer);
+  if(d.name)mark('f-name',d.name);
+  if(d.price)mark('f-price',d.price);
+  if(d.location&&['NY','NJ','MAD'].includes(d.location))mark('f-location',d.location);
+  if(d.year){
+    const yr=parseInt(d.year);
+    if(yr>2000&&yr<=new Date().getFullYear()){
+      const el=document.getElementById('f-date');
+      el.value=yr+'-01-01';
+      el.classList.add('voice-filled');
+      setTimeout(()=>el.classList.remove('voice-filled'),3000);
+    }
+  }
+  const filled=Object.values(d).filter(Boolean).length;
+  if(filled>0)toast('✓ Filled '+filled+' field'+(filled>1?'s':'')+' — review and save!');
+  else toast('Hmm, couldn\'t extract details — try again');
 }
 
 // ══════════════════════════════════════════════
 // CAMERA
 // ══════════════════════════════════════════════
 async function openCamera(){
-  const ov=document.getElementById('camera-overlay');
-  ov.classList.add('open');
-  capturedPhotoBase64=null;
+  document.getElementById('camera-overlay').classList.add('open');
   document.getElementById('use-photo-btn').style.display='none';
-  document.getElementById('bg-removal-panel').classList.remove('show');
+  document.getElementById('bg-preview-row').classList.remove('show');
+  capturedPhoto=null;bgRemovedBase64=null;
   await startStream();
 }
-
 async function startStream(){
-  if(cameraStream){cameraStream.getTracks().forEach(t=>t.stop());}
+  if(cameraStream)cameraStream.getTracks().forEach(t=>t.stop());
   try{
     cameraStream=await navigator.mediaDevices.getUserMedia({video:{facingMode},audio:false});
     document.getElementById('camera-video').srcObject=cameraStream;
-  }catch(e){
-    toast('Camera not available — use Upload instead');
-    closeCamera();
-  }
+  }catch{toast('Camera unavailable — use Upload instead');closeCamera();}
 }
-
-function switchCamera(){
-  facingMode=facingMode==='environment'?'user':'environment';
-  startStream();
-}
-
+function switchCamera(){facingMode=facingMode==='environment'?'user':'environment';startStream();}
 function capturePhoto(){
-  const video=document.getElementById('camera-video');
-  const canvas=document.getElementById('camera-canvas');
-  canvas.width=video.videoWidth;
-  canvas.height=video.videoHeight;
-  canvas.getContext('2d').drawImage(video,0,0);
-  capturedPhotoBase64=canvas.toDataURL('image/jpeg',0.92);
-
-  // Show original preview and start bg removal
-  const panel=document.getElementById('bg-removal-panel');
-  panel.classList.add('show');
-  document.getElementById('bg-original').src=capturedPhotoBase64;
-  document.getElementById('bg-processing').style.display='flex';
-  document.getElementById('bg-result').style.display='none';
-
-  removeBackground(capturedPhotoBase64).then(result=>{
-    bgRemovedBase64=result;
-    document.getElementById('bg-processing').style.display='none';
-    document.getElementById('bg-result').src=result;
-    document.getElementById('bg-result').style.display='block';
-    document.getElementById('use-photo-btn').style.display='inline-flex';
+  const v=document.getElementById('camera-video');
+  const c=document.getElementById('camera-canvas');
+  c.width=v.videoWidth;c.height=v.videoHeight;
+  c.getContext('2d').drawImage(v,0,0);
+  capturedPhoto=c.toDataURL('image/jpeg',.92);
+  const row=document.getElementById('bg-preview-row');
+  row.classList.add('show');
+  document.getElementById('bg-original').src=capturedPhoto;
+  document.getElementById('bg-spinner-wrap').style.display='block';
+  document.getElementById('bg-result-img').style.display='none';
+  removeBackground(capturedPhoto).then(r=>{
+    bgRemovedBase64=r;
+    document.getElementById('bg-spinner-wrap').style.display='none';
+    document.getElementById('bg-result-img').src=r;
+    document.getElementById('bg-result-img').style.display='block';
+    document.getElementById('use-photo-btn').style.display='inline-block';
   }).catch(()=>{
-    bgRemovedBase64=capturedPhotoBase64; // fallback to original
-    document.getElementById('bg-processing').style.display='none';
-    document.getElementById('use-photo-btn').style.display='inline-flex';
-    toast('Background removal unavailable — using original');
+    bgRemovedBase64=capturedPhoto;
+    document.getElementById('bg-spinner-wrap').style.display='none';
+    document.getElementById('use-photo-btn').style.display='inline-block';
   });
 }
-
 function usePhoto(){
   closeCamera();
-  if(bgRemovedBase64||capturedPhotoBase64){
-    const photo=bgRemovedBase64||capturedPhotoBase64;
-    processAIPhoto(photo,'image/png');
-  }
+  processAIPhoto(bgRemovedBase64||capturedPhoto,'image/png');
 }
-
 function closeCamera(){
-  if(cameraStream){cameraStream.getTracks().forEach(t=>t.stop());cameraStream=null;}
+  if(cameraStream)cameraStream.getTracks().forEach(t=>t.stop());
+  cameraStream=null;
   document.getElementById('camera-overlay').classList.remove('open');
 }
 
 // ══════════════════════════════════════════════
-// BACKGROUND REMOVAL via Claude vision
-// Uses Claude to create a transparent PNG by
-// generating a mask description and applying it
-// via canvas pixel manipulation
+// BACKGROUND REMOVAL
 // ══════════════════════════════════════════════
-async function removeBackground(base64DataURL){
-  // We'll use Claude to identify the garment bounding area and primary colors
-  // then do smart edge-aware background removal on canvas
-  const img=await loadImage(base64DataURL);
-  const canvas=document.createElement('canvas');
-  canvas.width=img.width;canvas.height=img.height;
-  const ctx=canvas.getContext('2d');
+async function removeBackground(dataURL){
+  const img=await loadImg(dataURL);
+  const c=document.createElement('canvas');
+  c.width=img.width;c.height=img.height;
+  const ctx=c.getContext('2d');
   ctx.drawImage(img,0,0);
-  const imageData=ctx.getImageData(0,0,canvas.width,canvas.height);
-  const data=imageData.data;
-
-  // Sample background color from corners
-  const corners=[
-    getPixel(data,canvas.width,0,0),
-    getPixel(data,canvas.width,canvas.width-1,0),
-    getPixel(data,canvas.width,0,canvas.height-1),
-    getPixel(data,canvas.width,canvas.width-1,canvas.height-1)
-  ];
-  const bgR=Math.round(corners.reduce((s,c)=>s+c[0],0)/4);
-  const bgG=Math.round(corners.reduce((s,c)=>s+c[1],0)/4);
-  const bgB=Math.round(corners.reduce((s,c)=>s+c[2],0)/4);
-
-  // Flood-fill style background removal with tolerance
-  const tolerance=38;
-  for(let i=0;i<data.length;i+=4){
-    const dr=data[i]-bgR,dg=data[i+1]-bgG,db=data[i+2]-bgB;
-    const dist=Math.sqrt(dr*dr+dg*dg+db*db);
-    if(dist<tolerance){
-      // Soft edge: fade alpha based on distance
-      data[i+3]=Math.round((dist/tolerance)*data[i+3]*0.3);
-    }
+  const id=ctx.getImageData(0,0,c.width,c.height);
+  const d=id.data;
+  const px=(x,y)=>{const i=(y*c.width+x)*4;return[d[i],d[i+1],d[i+2]];};
+  const corners=[px(0,0),px(c.width-1,0),px(0,c.height-1),px(c.width-1,c.height-1)];
+  const br=Math.round(corners.reduce((s,c)=>s+c[0],0)/4);
+  const bg2=Math.round(corners.reduce((s,c)=>s+c[1],0)/4);
+  const bb=Math.round(corners.reduce((s,c)=>s+c[2],0)/4);
+  const tol=42;
+  for(let i=0;i<d.length;i+=4){
+    const dr=d[i]-br,dg=d[i+1]-bg2,db2=d[i+2]-bb;
+    const dist=Math.sqrt(dr*dr+dg*dg+db2*db2);
+    if(dist<tol)d[i+3]=Math.round((dist/tol)*d[i+3]*.25);
   }
-
-  ctx.putImageData(imageData,0,0);
-  return canvas.toDataURL('image/png');
+  ctx.putImageData(id,0,0);
+  return c.toDataURL('image/png');
 }
-
-function getPixel(data,width,x,y){
-  const i=(y*width+x)*4;
-  return[data[i],data[i+1],data[i+2]];
-}
-
-function loadImage(src){
-  return new Promise((res,rej)=>{
-    const img=new Image();
-    img.onload=()=>res(img);
-    img.onerror=rej;
-    img.src=src;
-  });
-}
+const loadImg=src=>new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=rej;i.src=src;});
 
 // ══════════════════════════════════════════════
-// FILE UPLOAD + DRAG DROP
+// FILE HANDLING
 // ══════════════════════════════════════════════
-function handleAIFile(e){
-  const file=e.target.files[0];
-  if(!file)return;
-  readAndProcess(file);
-}
+function handleAIFile(e){const f=e.target.files[0];if(f)readProcess(f);}
 function handleDrop(e){
   e.preventDefault();
-  document.getElementById('drop-zone-btn').style.borderColor='';
-  const file=e.dataTransfer.files[0];
-  if(file&&file.type.startsWith('image/'))readAndProcess(file);
+  const f=e.dataTransfer.files[0];
+  if(f&&f.type.startsWith('image/'))readProcess(f);
 }
-function readAndProcess(file){
+function readProcess(file){
   const r=new FileReader();
   r.onload=ev=>{
-    const b64=ev.target.result;
-    // Remove background first, then AI analyze
-    removeBackground(b64).then(cleaned=>{
-      processAIPhoto(cleaned,'image/png');
-    }).catch(()=>processAIPhoto(b64,file.type));
+    removeBackground(ev.target.result)
+      .then(clean=>processAIPhoto(clean,'image/png'))
+      .catch(()=>processAIPhoto(ev.target.result,file.type));
   };
   r.readAsDataURL(file);
 }
 
 // ══════════════════════════════════════════════
-// AI PHOTO RECOGNITION
+// AI RECOGNITION
 // ══════════════════════════════════════════════
-async function processAIPhoto(base64DataURL, mediaType){
-  aiPhotoBase64=base64DataURL;
+async function processAIPhoto(dataURL,mt){
+  aiPhotoBase64=dataURL;
   document.getElementById('ai-analyzing').classList.add('show');
   document.getElementById('ai-result').classList.remove('show');
-
-  const base64Data=base64DataURL.split(',')[1];
-  const mt=base64DataURL.startsWith('data:image/png')?'image/png':(mediaType||'image/jpeg');
-
+  const b64=dataURL.split(',')[1];
+  const mtype=dataURL.startsWith('data:image/png')?'image/png':(mt||'image/jpeg');
   try{
-    const response=await fetch('https://api.anthropic.com/v1/messages',{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         model:'claude-sonnet-4-20250514',
-        max_tokens:800,
+        max_tokens:600,
         messages:[{
           role:'user',
           content:[
-            {type:'image',source:{type:'base64',media_type:mt,data:base64Data}},
-            {type:'text',text:`You are a luxury fashion expert. Analyze this garment image and return ONLY a valid JSON object, no markdown fences, no explanation:
-{
-  "type": "one of: Jacket, Coat, Blazer, Dress, Skirt, Trousers, Jeans, Shorts, Top, Shirt, Blouse, Sweater, Cardigan, Shoes, Boots, Sneakers, Bag, Accessory, Other",
-  "designer": "designer or brand if visible or recognizable, else empty string",
-  "name": "concise product name including color and material e.g. Ivory silk slip dress",
-  "color": "primary color"
-}`}
+            {type:'image',source:{type:'base64',media_type:mtype,data:b64}},
+            {type:'text',text:`Fashion expert: analyze this garment. Return ONLY valid JSON, no markdown:
+{"type":"one of: Jacket,Coat,Blazer,Dress,Skirt,Trousers,Jeans,Shorts,Top,Shirt,Blouse,Sweater,Cardigan,Shoes,Boots,Sneakers,Bag,Accessory,Other","designer":"brand if visible else empty","name":"concise name with color e.g. Ivory silk slip dress","color":"primary color"}`}
           ]
         }]
       })
     });
-    const data=await response.json();
+    const data=await res.json();
     const text=data.content?.find(c=>c.type==='text')?.text||'{}';
     const parsed=JSON.parse(text.replace(/```json|```/g,'').trim());
-
     document.getElementById('ai-analyzing').classList.remove('show');
     document.getElementById('ai-result').classList.add('show');
-    document.getElementById('ai-result-photo').src=base64DataURL;
-
+    document.getElementById('ai-result-photo').src=dataURL;
     openFormWithAI(parsed);
-  }catch(err){
+  }catch{
     document.getElementById('ai-analyzing').classList.remove('show');
-    toast('AI analysis unavailable — form is open, fill in manually');
+    toast('AI unavailable — form open, fill manually');
     openFormManual();
   }
 }
@@ -744,85 +854,20 @@ function openFormWithAI(data){
   document.getElementById('add-form').classList.add('open');
   document.getElementById('form-title').textContent='Review & save ✦';
   const TYPES=['Jacket','Coat','Blazer','Dress','Skirt','Trousers','Jeans','Shorts','Top','Shirt','Blouse','Sweater','Cardigan','Shoes','Boots','Sneakers','Bag','Accessory','Other'];
-  const sel=document.getElementById('f-type');
-  if(data.type&&TYPES.includes(data.type)){sel.value=data.type;sel.classList.add('ai-filled');}
-  const des=document.getElementById('f-designer');
-  if(data.designer){des.value=data.designer;des.classList.add('ai-filled');}
-  const nm=document.getElementById('f-name');
-  const nameStr=[data.color,data.name].filter(Boolean).join(' ').trim();
-  if(nameStr){nm.value=nameStr;nm.classList.add('ai-filled');}
+  const mark=(id,val)=>{if(!val)return;const el=document.getElementById(id);el.value=val;el.classList.add('ai-filled');};
+  if(data.type&&TYPES.includes(data.type))mark('f-type',data.type);
+  if(data.designer)mark('f-designer',data.designer);
+  const nm=[data.color,data.name].filter(Boolean).join(' ').trim();
+  if(nm)mark('f-name',nm);
+  document.getElementById('f-location').value=curLoc;
   if(aiPhotoBase64){pendingPhotos=[aiPhotoBase64,...pendingPhotos];renderPreviews();}
-  document.getElementById('f-price').focus();
 }
 
 function openFormManual(){
   document.getElementById('add-form').classList.add('open');
   document.getElementById('form-title').textContent='Add a new piece ✦';
+  document.getElementById('f-location').value=curLoc;
   if(aiPhotoBase64){pendingPhotos=[aiPhotoBase64,...pendingPhotos];renderPreviews();}
-}
-
-// ══════════════════════════════════════════════
-// VOICE DICTATION
-// ══════════════════════════════════════════════
-let activeRecognition=null;
-
-function startDictation(fieldId,btn){
-  const SpeechRecognition=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(!SpeechRecognition){toast('Voice not supported in this browser — try Chrome or Safari');return;}
-
-  // Stop any active recognition
-  if(activeRecognition){
-    activeRecognition.stop();
-    activeRecognition=null;
-    document.querySelectorAll('.mic-btn').forEach(b=>{b.classList.remove('listening');b.innerHTML='🎤';});
-    document.querySelectorAll('.mic-hint').forEach(h=>h.classList.remove('show'));
-    return;
-  }
-
-  const recognition=new SpeechRecognition();
-  recognition.lang='en-US';
-  recognition.interimResults=true;
-  recognition.continuous=false;
-  activeRecognition=recognition;
-
-  const hint=document.getElementById('hint-'+fieldId);
-  btn.classList.add('listening');
-  btn.innerHTML='<div class="voice-bar"><span></span><span></span><span></span><span></span><span></span></div>';
-  hint&&hint.classList.add('show');
-
-  const field=document.getElementById(fieldId);
-
-  recognition.onresult=e=>{
-    let transcript='';
-    for(let i=e.resultIndex;i<e.results.length;i++){
-      transcript+=e.results[i][0].transcript;
-    }
-    // For price field, extract numbers
-    if(fieldId==='f-price'){
-      const nums=transcript.match(/[\d,.]+/g);
-      field.value=nums?nums[0].replace(/,/g,''):transcript;
-    } else {
-      field.value=transcript;
-    }
-  };
-
-  recognition.onend=()=>{
-    btn.classList.remove('listening');
-    btn.innerHTML='🎤';
-    hint&&hint.classList.remove('show');
-    activeRecognition=null;
-    if(field.value)toast('✓ Got it: "'+field.value.slice(0,40)+(field.value.length>40?'…':'')+'"');
-  };
-
-  recognition.onerror=e=>{
-    btn.classList.remove('listening');
-    btn.innerHTML='🎤';
-    hint&&hint.classList.remove('show');
-    activeRecognition=null;
-    if(e.error!=='aborted')toast('Voice error: '+e.error+' — try again');
-  };
-
-  recognition.start();
 }
 
 // ══════════════════════════════════════════════
@@ -831,9 +876,8 @@ function startDictation(fieldId,btn){
 function toggleAI(){
   const p=document.getElementById('ai-panel');
   p.classList.toggle('open');
-  if(!p.classList.contains('open')){resetAll();}
+  if(!p.classList.contains('open'))resetAI();
 }
-
 function toggleForm(){
   const f=document.getElementById('add-form');
   if(f.classList.contains('open')){cancelForm();}
@@ -841,70 +885,74 @@ function toggleForm(){
     document.getElementById('ai-panel').classList.remove('open');
     f.classList.add('open');
     document.getElementById('form-title').textContent='Add a new piece ✦';
+    document.getElementById('f-location').value=curLoc;
   }
 }
-
-function resetAll(){
+function resetAI(){
   document.getElementById('ai-analyzing').classList.remove('show');
   document.getElementById('ai-result').classList.remove('show');
   document.getElementById('ai-upload-input').value='';
-  aiPhotoBase64=null;bgRemovedBase64=null;capturedPhotoBase64=null;
+  aiPhotoBase64=null;bgRemovedBase64=null;capturedPhoto=null;
 }
-
 function cancelForm(){
+  if(isListening)stopVoice();
   document.getElementById('add-form').classList.remove('open');
   document.getElementById('ai-panel').classList.remove('open');
+  document.getElementById('voice-transcript').classList.remove('show');
+  document.getElementById('voice-transcript').textContent='';
   ['f-type','f-designer','f-name','f-date','f-price'].forEach(id=>{
-    const el=document.getElementById(id);if(el){el.value='';el.classList.remove('ai-filled');}
+    const el=document.getElementById(id);if(el){el.value='';el.classList.remove('ai-filled','voice-filled');}
   });
+  document.getElementById('f-location').value=curLoc;
   pendingPhotos=[];renderPreviews();
   document.getElementById('photo-input').value='';
-  resetAll();
+  resetAI();
 }
 
 function handlePhotos(e){
   Array.from(e.target.files).forEach(f=>{
     const r=new FileReader();
     r.onload=ev=>{
-      removeBackground(ev.target.result).then(cleaned=>{
-        pendingPhotos.push(cleaned);renderPreviews();
-      }).catch(()=>{pendingPhotos.push(ev.target.result);renderPreviews();});
+      removeBackground(ev.target.result)
+        .then(c=>{pendingPhotos.push(c);renderPreviews();})
+        .catch(()=>{pendingPhotos.push(ev.target.result);renderPreviews();});
     };
     r.readAsDataURL(f);
   });
 }
-
 function renderPreviews(){
   document.getElementById('photo-preview').innerHTML=pendingPhotos.map(p=>`<img src="${p}" alt=""/>`).join('');
 }
 
 function saveItem(){
-  // All fields optional — just grab whatever is filled
   const type=document.getElementById('f-type').value;
   const name=document.getElementById('f-name').value.trim();
   const designer=document.getElementById('f-designer').value.trim();
   const date=document.getElementById('f-date').value;
   const priceRaw=document.getElementById('f-price').value.replace(/[^0-9.]/g,'');
   const price=parseFloat(priceRaw)||0;
-
-  // Need at least one field or a photo
+  const location=document.getElementById('f-location').value||curLoc;
   if(!type&&!name&&!designer&&!pendingPhotos.length){
-    toast('Add at least a photo or a name to save ✿');return;
+    toast('Add at least a photo, name, or type to save ✿');return;
   }
-
   items.push({
     id:Date.now(),
     type:type||'Other',
-    name:name||(type||'Item'),
-    designer,date,price,
-    location:curLoc,
+    name:name||(type||'Untitled'),
+    designer,date,price,location,
     photos:[...pendingPhotos],
-    bgRemoved:!!(bgRemovedBase64||pendingPhotos.some(p=>p.startsWith('data:image/png')))
+    bgRemoved:pendingPhotos.some(p=>p.startsWith('data:image/png'))
   });
   persist(DB,items);
+  // Update location display if it differs from curLoc
+  if(location!==curLoc){
+    curLoc=location;
+    document.querySelectorAll('.loc-tab').forEach(t=>t.classList.remove('active'));
+    document.getElementById('tab-'+location)&&document.getElementById('tab-'+location).classList.add('active');
+  }
   cancelForm();
   render();
-  toast('✓ Saved to '+LOC[curLoc]);
+  toast('✓ Saved to '+LOC[location]);
 }
 
 function deleteItem(id,e){
@@ -925,13 +973,13 @@ function render(){
   const filtered=curFilter==='All'?locItems:locItems.filter(i=>i.type===curFilter);
   const list=document.getElementById('items-list');
   if(!filtered.length){
-    list.innerHTML=`<div class="empty-grid"><div class="big">${locItems.length?'🔍':'🌸'}</div><div>${locItems.length?'No items in this category':'Nothing here yet — use ✦ AI Add or + Manual!'}</div></div>`;
+    list.innerHTML=`<div class="empty-grid"><div class="big">${locItems.length?'🔍':'🌸'}</div><div>${locItems.length?'No items in this category':'Nothing here yet — add your first piece!'}</div></div>`;
   } else {
     list.innerHTML=filtered.map(item=>{
       const ic=ICONS[item.type]||'🏷️',sw=SWATCHES[item.type]||'#E8E0F5',tc=TAGCOL[item.type]||'#8A75C2';
-      const isTrans=item.bgRemoved||false;
+      const tb=item.bgRemoved;
       const ph=item.photos&&item.photos.length
-        ?`<div class="item-photo-area${isTrans?' transparent-bg':''}"><img src="${item.photos[0]}" alt=""/></div>`
+        ?`<div class="item-photo-area${tb?' tbg':''}"><img src="${item.photos[0]}" alt=""/></div>`
         :`<div class="item-photo-area" style="background:${sw};">${ic}</div>`;
       return `<div class="item-card" onclick="openDetail(${item.id})">
         ${ph}
@@ -956,13 +1004,13 @@ function render(){
 }
 function setFilter(t){curFilter=t;render();}
 
-// ── DETAIL MODAL ──
+// ── DETAIL ──
 function openDetail(id){
   const item=items.find(i=>i.id===id);if(!item)return;
   const ic=ICONS[item.type]||'🏷️',sw=SWATCHES[item.type]||'#E8E0F5';
-  const isTrans=item.bgRemoved||false;
+  const tb=item.bgRemoved;
   document.getElementById('d-img').innerHTML=item.photos&&item.photos.length
-    ?`<img src="${item.photos[0]}" alt="" style="width:100%;height:210px;object-fit:contain;display:block;${isTrans?'background-image:linear-gradient(45deg,#f0eef5 25%,transparent 25%),linear-gradient(-45deg,#f0eef5 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#f0eef5 75%),linear-gradient(-45deg,transparent 75%,#f0eef5 75%);background-size:12px 12px;':''}"/>`
+    ?`<img src="${item.photos[0]}" alt="" style="width:100%;height:210px;object-fit:contain;display:block;${tb?'background-image:linear-gradient(45deg,#f0eef5 25%,transparent 25%),linear-gradient(-45deg,#f0eef5 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#f0eef5 75%),linear-gradient(-45deg,transparent 75%,#f0eef5 75%);background-size:12px 12px;':''}"/>`
     :`<div style="width:100%;height:210px;background:${sw};display:flex;align-items:center;justify-content:center;font-size:60px;">${ic}</div>`;
   document.getElementById('d-name').textContent=item.name||item.type||'Untitled';
   document.getElementById('d-type').textContent=item.type||'—';
@@ -979,26 +1027,20 @@ function closeDetail(){document.getElementById('detail-ov').classList.remove('op
 const SLOT_LABELS=['Top / Shirt','Bottom','Outerwear','Shoes','Bag','Accessory'];
 const SLOT_EMOJIS=['👕','👖','🧥','👠','👜','💍'];
 let curLook=[null,null,null,null,null,null],pickerSlot=null,pickerSel=null;
-
 function toggleLookBuilder(){
   const b=document.getElementById('look-builder');
   b.classList.toggle('open');
-  if(b.classList.contains('open')){
-    curLook=[null,null,null,null,null,null];
-    document.getElementById('look-name-inp').value='';
-    renderSlots();
-  }
+  if(b.classList.contains('open')){curLook=[null,null,null,null,null,null];document.getElementById('look-name-inp').value='';renderSlots();}
 }
 function renderSlots(){
   document.getElementById('look-slots').innerHTML=curLook.map((id,i)=>{
     const item=id?items.find(x=>x.id===id):null;
     if(item){
-      const ic=ICONS[item.type]||'🏷️',sw=SWATCHES[item.type]||'#E8E0F5';
-      const isTrans=item.bgRemoved||false;
+      const ic=ICONS[item.type]||'🏷️',sw=SWATCHES[item.type]||'#E8E0F5',tb=item.bgRemoved;
       const bg=item.photos&&item.photos.length
         ?`<img src="${item.photos[0]}" alt=""/>`
         :`<div style="position:absolute;inset:0;background:${sw};display:flex;align-items:center;justify-content:center;font-size:26px;">${ic}</div>`;
-      return `<div class="look-slot${isTrans?' has-transparent-item':''}" onclick="openPicker(${i})">${bg}<button class="rm-slot" onclick="rmSlot(${i},event)">✕</button><div class="slot-name-overlay">${(item.name||item.type||'Item').slice(0,14)}</div></div>`;
+      return `<div class="look-slot${tb?' tbg':''}" onclick="openPicker(${i})">${bg}<button class="rm-slot" onclick="rmSlot(${i},event)">✕</button><div class="slot-overlay">${(item.name||item.type||'Item').slice(0,14)}</div></div>`;
     }
     return `<div class="look-slot" onclick="openPicker(${i})"><div class="slot-emoji">${SLOT_EMOJIS[i]}</div><div class="slot-lbl">${SLOT_LABELS[i]}</div></div>`;
   }).join('');
@@ -1009,9 +1051,9 @@ function openPicker(idx){
   document.getElementById('picker-grid').innerHTML=!items.length
     ?'<div style="color:var(--muted);font-size:13px;grid-column:1/-1;padding:1rem;">No items yet.</div>'
     :items.map(item=>{
-      const ic=ICONS[item.type]||'🏷️',sw=SWATCHES[item.type]||'#E8E0F5';
+      const ic=ICONS[item.type]||'🏷️',sw=SWATCHES[item.type]||'#E8E0F5',tb=item.bgRemoved;
       const ph=item.photos&&item.photos.length
-        ?`<div class="picker-photo" style="${item.bgRemoved?'background-image:linear-gradient(45deg,#eee 25%,transparent 25%),linear-gradient(-45deg,#eee 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#eee 75%),linear-gradient(-45deg,transparent 75%,#eee 75%);background-size:8px 8px;background-position:0 0,0 4px,4px -4px,-4px 0;':'background:'+sw+';'}"><img src="${item.photos[0]}" alt=""/></div>`
+        ?`<div class="picker-photo" style="${tb?'background-image:linear-gradient(45deg,#eee 25%,transparent 25%),linear-gradient(-45deg,#eee 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#eee 75%),linear-gradient(-45deg,transparent 75%,#eee 75%);background-size:8px 8px;':'background:'+sw+';'}"><img src="${item.photos[0]}" alt=""/></div>`
         :`<div class="picker-photo" style="background:${sw};">${ic}</div>`;
       return `<div class="picker-item${pickerSel===item.id?' sel':''}" onclick="selPick(${item.id},this)">${ph}<div class="picker-info"><div class="picker-name">${item.name||item.type||'Item'}</div><div class="picker-sub">${item.type||''}${item.designer?' · '+item.designer:''}</div></div></div>`;
     }).join('');
@@ -1034,14 +1076,14 @@ function renderLooks(){
   const list=document.getElementById('looks-list');
   if(!looks.length){list.innerHTML='<div class="empty-grid" style="grid-column:1/-1"><div class="big">👗</div><div>No looks yet — build your first outfit!</div></div>';return;}
   list.innerHTML=looks.map(look=>{
-    const lookItems=look.slots.filter(Boolean).map(id=>items.find(i=>i.id===id)).filter(Boolean);
-    const total=lookItems.reduce((s,i)=>s+(i.price||0),0);
+    const li=look.slots.filter(Boolean).map(id=>items.find(i=>i.id===id)).filter(Boolean);
+    const total=li.reduce((s,i)=>s+(i.price||0),0);
     const thumbs=look.slots.map(id=>{
       if(!id)return '';
       const item=items.find(i=>i.id===id);if(!item)return '';
-      const ic=ICONS[item.type]||'🏷️',sw=SWATCHES[item.type]||'#E8E0F5';
+      const ic=ICONS[item.type]||'🏷️',sw=SWATCHES[item.type]||'#E8E0F5',tb=item.bgRemoved;
       return item.photos&&item.photos.length
-        ?`<div class="look-thumb" style="${item.bgRemoved?'background-image:linear-gradient(45deg,#f0eef5 25%,transparent 25%),linear-gradient(-45deg,#f0eef5 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#f0eef5 75%),linear-gradient(-45deg,transparent 75%,#f0eef5 75%);background-size:8px 8px;':'background:'+sw+';'}"><img src="${item.photos[0]}" alt=""/></div>`
+        ?`<div class="look-thumb" style="${tb?'background-image:linear-gradient(45deg,#f0eef5 25%,transparent 25%),linear-gradient(-45deg,#f0eef5 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#f0eef5 75%),linear-gradient(-45deg,transparent 75%,#f0eef5 75%);background-size:8px 8px;':'background:'+sw+';'}"><img src="${item.photos[0]}" alt=""/></div>`
         :`<div class="look-thumb" style="background:${sw};">${ic}</div>`;
     }).filter(Boolean).join('');
     return `<div class="look-card">
@@ -1057,16 +1099,68 @@ function addToLookQuick(itemId){
   document.getElementById('page-looks').classList.add('active');
   document.querySelectorAll('.nav-btn')[1].classList.add('active');
   const b=document.getElementById('look-builder');
-  if(!b.classList.contains('open')){
-    curLook=[null,null,null,null,null,null];
-    document.getElementById('look-name-inp').value='';
-    b.classList.add('open');
-  }
+  if(!b.classList.contains('open')){curLook=[null,null,null,null,null,null];document.getElementById('look-name-inp').value='';b.classList.add('open');}
   const fi=curLook.findIndex(x=>x===null);
   if(fi>=0){curLook[fi]=itemId;renderSlots();}
 }
 
-render();renderLooks();
+// ══════════════════════════════════════════════
+// BACKUP & RESTORE
+// ══════════════════════════════════════════════
+function openBackup(){document.getElementById('backup-ov').classList.add('open');}
+function closeBackup(){document.getElementById('backup-ov').classList.remove('open');}
+
+function doExport(){
+  const backup={
+    version:1,
+    exported:new Date().toISOString(),
+    items,
+    looks
+  };
+  const blob=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  const dateStr=new Date().toISOString().slice(0,10);
+  a.href=url;
+  a.download=`my-closet-backup-${dateStr}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  closeBackup();
+  toast('✓ Backup downloaded! Store it safely in iCloud or Google Drive.');
+}
+
+function doImport(e){
+  const file=e.target.files[0];
+  if(!file)return;
+  const r=new FileReader();
+  r.onload=ev=>{
+    try{
+      const backup=JSON.parse(ev.target.result);
+      if(!backup.items||!Array.isArray(backup.items))throw new Error('Invalid backup file');
+      const confirmRestore=confirm(
+        `Restore backup from ${backup.exported?new Date(backup.exported).toLocaleDateString():'unknown date'}?\n\n`+
+        `This will REPLACE your current wardrobe (${items.length} items) with the backup (${backup.items.length} items).\n\n`+
+        `This cannot be undone.`
+      );
+      if(!confirmRestore)return;
+      items=backup.items;
+      looks=backup.looks||[];
+      persist(DB,items);
+      persist(LK,looks);
+      closeBackup();
+      render();
+      renderLooks();
+      toast(`✓ Restored ${items.length} items and ${looks.length} looks!`);
+    }catch(err){
+      toast('Could not read backup file — is it a valid .json backup?');
+    }
+  };
+  r.readAsText(file);
+  e.target.value='';
+}
+
+render();
+renderLooks();
 </script>
 </body>
 </html>
