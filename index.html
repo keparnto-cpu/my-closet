@@ -104,21 +104,37 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-
 .form-panel h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;margin-bottom:.2rem;color:var(--ink);}
 .form-optional-note{font-size:11px;color:var(--muted);margin-bottom:1.2rem;}
 
-/* VOICE ENTRY BLOCK */
-.voice-entry{background:linear-gradient(135deg,rgba(212,121,138,.06),rgba(138,117,194,.08));border:1.5px solid var(--border2);border-radius:var(--r);padding:1.2rem;margin-bottom:1.2rem;}
-.voice-entry-title{font-size:12px;font-weight:500;color:var(--violet);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.4rem;}
-.voice-entry-hint{font-size:12px;color:var(--muted);margin-bottom:.9rem;line-height:1.5;}
-.voice-entry-hint em{font-style:italic;color:var(--ink);}
-.big-mic-btn{width:100%;padding:14px;border-radius:var(--r);border:2px solid var(--rose);background:transparent;cursor:pointer;font-family:'Jost',sans-serif;font-size:14px;font-weight:500;color:var(--rose);display:flex;align-items:center;justify-content:center;gap:10px;transition:all .25s;}
-.big-mic-btn:hover{background:rgba(212,121,138,.08);}
-.big-mic-btn.listening{background:var(--rose);color:var(--white);border-color:var(--rose);animation:none;}
-.big-mic-btn.listening .mic-icon{animation:pulse .7s ease infinite;}
-@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.2);}}
-.mic-icon{font-size:20px;}
-.voice-transcript{margin-top:.8rem;background:var(--cream);border-radius:var(--rsm);padding:10px 12px;font-size:13px;color:var(--ink);min-height:36px;border:1px solid var(--border);display:none;line-height:1.5;}
-.voice-transcript.show{display:block;}
-.voice-parsing{font-size:11px;color:var(--violet);margin-top:.5rem;display:none;}
-.voice-parsing.show{display:block;}
+/* SMART TEXT ENTRY */
+.smart-entry{background:linear-gradient(135deg,rgba(212,121,138,.05),rgba(138,117,194,.07));border:1.5px solid var(--border2);border-radius:var(--r);padding:1.2rem;margin-bottom:1.2rem;}
+.smart-entry-title{font-size:12px;font-weight:500;color:var(--violet);letter-spacing:.05em;text-transform:uppercase;margin-bottom:.4rem;}
+.smart-entry-hint{font-size:12px;color:var(--muted);margin-bottom:.8rem;line-height:1.5;}
+.smart-entry-hint em{font-style:italic;color:var(--ink);}
+.smart-input-row{display:flex;gap:8px;align-items:center;}
+.smart-input{flex:1;border:1.5px solid var(--lavender);border-radius:var(--rsm);padding:10px 14px;font-size:14px;font-family:'Jost',sans-serif;color:var(--ink);background:var(--white);outline:none;transition:border-color .2s,box-shadow .2s;}
+.smart-input:focus{border-color:var(--violet);box-shadow:0 0 0 3px rgba(138,117,194,.12);}
+.smart-input::placeholder{color:var(--softer);}
+.smart-go-btn{background:var(--violet);color:var(--white);border:none;border-radius:var(--rsm);padding:10px 18px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Jost',sans-serif;white-space:nowrap;transition:background .2s,transform .15s;display:flex;align-items:center;gap:6px;}
+.smart-go-btn:hover{background:#7060a8;transform:scale(1.03);}
+.smart-go-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+.smart-go-btn .go-spinner{width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:var(--white);border-radius:50%;animation:spin .7s linear infinite;display:none;}
+.smart-go-btn.loading .go-spinner{display:block;}
+.smart-go-btn.loading .go-text{display:none;}
+.smart-result{font-size:11px;color:var(--violet);margin-top:.6rem;display:none;padding:6px 10px;background:rgba(138,117,194,.08);border-radius:var(--rsm);}
+.smart-result.show{display:block;}
+
+/* PHOTO MANAGEMENT */
+.photo-mgmt{border:1.5px solid var(--border2);border-radius:var(--r);padding:14px;background:rgba(232,224,245,.08);}
+.photo-mgmt-title{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:10px;}
+.photo-thumbs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;}
+.photo-thumb-wrap{position:relative;width:72px;height:72px;flex-shrink:0;}
+.photo-thumb-wrap img{width:72px;height:72px;object-fit:contain;border-radius:8px;border:2px solid var(--border);display:block;cursor:pointer;}
+.photo-thumb-wrap img.main-photo{border-color:var(--violet);box-shadow:0 0 0 2px var(--violet);}
+.photo-thumb-wrap .remove-photo{position:absolute;top:-5px;right:-5px;width:18px;height:18px;background:var(--rose);color:var(--white);border:none;border-radius:50%;font-size:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:2;}
+.photo-thumb-wrap .main-badge{position:absolute;bottom:0;left:0;right:0;background:var(--violet);color:var(--white);font-size:8px;text-align:center;padding:2px;border-radius:0 0 6px 6px;font-weight:500;}
+.photo-add-btn{width:72px;height:72px;border:2px dashed var(--border2);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;background:transparent;font-family:'Jost',sans-serif;color:var(--muted);font-size:10px;gap:3px;transition:all .2s;position:relative;overflow:hidden;}
+.photo-add-btn input{position:absolute;inset:0;opacity:0;cursor:pointer;}
+.photo-add-btn:hover{border-color:var(--violet);background:rgba(232,224,245,.3);}
+.photo-add-btn .add-icon{font-size:20px;}
 
 /* FORM GRID */
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
@@ -168,8 +184,15 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-
 .icon-btn:hover{border-color:var(--rose);color:var(--rose);background:rgba(212,121,138,.08);}
 .icon-btn.tl{border-color:var(--sage);color:var(--sage);}
 .icon-btn.tl:hover{background:rgba(95,168,130,.1);}
+.icon-btn.edit{border-color:var(--violet);color:var(--violet);}
+.icon-btn.edit:hover{background:rgba(138,117,194,.1);}
+.icon-btn.del{border-color:var(--rose);color:var(--rose);}
+.icon-btn.del:hover{background:rgba(212,121,138,.1);}
 .empty-grid{text-align:center;padding:4rem 1rem;color:var(--muted);font-size:14px;grid-column:1/-1;}
 .empty-grid .big{font-size:3rem;margin-bottom:10px;}
+/* EDIT MODE banner */
+.edit-banner{background:linear-gradient(135deg,rgba(138,117,194,.1),rgba(212,121,138,.08));border:1.5px solid var(--violet);border-radius:var(--rsm);padding:7px 12px;font-size:12px;color:var(--violet);margin-bottom:.8rem;display:none;align-items:center;gap:8px;}
+.edit-banner.show{display:flex;}
 
 /* LOOKS */
 .looks-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;}
@@ -335,7 +358,7 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-
       <!-- AI PANEL -->
       <div class="ai-panel" id="ai-panel">
         <div class="ai-panel-title">AI Photo Recognition ✦</div>
-        <div class="ai-panel-sub">Snap, upload or drag a photo — Claude identifies it and removes the background. Then just speak your description and save.</div>
+        <div class="ai-panel-sub">Snap, upload or drag a photo — Claude identifies it and removes the background. Then use the quick describe box to fill the rest.</div>
         <div class="capture-options">
           <button class="capture-btn camera-live" onclick="openCamera()">
             <div class="cb-icon">📷</div>
@@ -370,18 +393,21 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-
       <!-- FORM -->
       <div class="form-panel" id="add-form">
         <h3 id="form-title">Add a new piece ✦</h3>
+        <div class="edit-banner" id="edit-banner">✏️ Editing item — make your changes and hit Save</div>
         <div class="form-optional-note">All fields optional — speak, type, or just save with a photo.</div>
 
-        <!-- SINGLE VOICE ENTRY -->
-        <div class="voice-entry">
-          <div class="voice-entry-title">🎤 Voice description</div>
-          <div class="voice-entry-hint">Tap the mic and describe the item naturally:<br/><em>"Tom Ford black leather bag, Madrid, eight hundred dollars, bought last year"</em></div>
-          <button class="big-mic-btn" id="big-mic" onclick="toggleVoice()">
-            <span class="mic-icon">🎤</span>
-            <span id="mic-label">Tap to speak</span>
-          </button>
-          <div class="voice-transcript" id="voice-transcript"></div>
-          <div class="voice-parsing" id="voice-parsing">✦ Parsing your description<span class="analyzing-dots"></span></div>
+        <!-- SMART TEXT ENTRY -->
+        <div class="smart-entry">
+          <div class="smart-entry-title">✦ Quick describe</div>
+          <div class="smart-entry-hint">Type naturally and Claude fills the fields — then just hit Save:<br/><em>"Tom Ford black bag Madrid $800 2023"</em></div>
+          <div class="smart-input-row">
+            <input class="smart-input" id="smart-input" placeholder="Describe the item in your own words…" onkeydown="if(event.key==='Enter')smartParse()"/>
+            <button class="smart-go-btn" id="smart-go-btn" onclick="smartParse()">
+              <span class="go-text">✦ Fill fields</span>
+              <div class="go-spinner"></div>
+            </button>
+          </div>
+          <div class="smart-result" id="smart-result"></div>
         </div>
 
         <div class="form-grid">
@@ -423,14 +449,14 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);min-
             </select>
           </div>
           <div class="fg full">
-            <label>More photos</label>
-            <div class="photo-zone">
-              <input type="file" accept="image/*" multiple id="photo-input" onchange="handlePhotos(event)"/>
-              <div class="photo-zone-inner">
-                <div style="font-size:22px;">📷</div>
-                <div style="font-size:12px;color:var(--muted);">Add more photos</div>
+            <div class="photo-mgmt">
+              <div class="photo-mgmt-title">Photos — click main to reorder · ✕ to remove</div>
+              <div class="photo-thumbs" id="photo-thumbs"></div>
+              <div class="photo-add-btn">
+                <input type="file" accept="image/*" multiple id="photo-input" onchange="handlePhotos(event)"/>
+                <div class="add-icon">📷</div>
+                <div>Add photo</div>
               </div>
-              <div class="photo-preview" id="photo-preview"></div>
             </div>
           </div>
         </div>
@@ -554,7 +580,7 @@ const persist=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
 let items=load(DB),looks=load(LK);
 let curLoc='NY',curFilter='All',pendingPhotos=[],aiPhotoBase64=null,bgRemovedBase64=null;
 let cameraStream=null,facingMode='environment',capturedPhoto=null;
-let recognition=null,isListening=false;
+let editingId=null;
 
 // ── ICONS / COLORS ──
 const ICONS={Jacket:'🧥',Coat:'🧥',Blazer:'👔',Dress:'👗',Skirt:'👗',Trousers:'👖',Jeans:'👖',Shorts:'🩳',Top:'👕',Shirt:'👕',Blouse:'👚',Sweater:'🧶',Cardigan:'🧶',Shoes:'👠',Boots:'👢',Sneakers:'👟',Bag:'👜',Accessory:'💍',Other:'🏷️'};
@@ -590,127 +616,55 @@ function setLoc(loc,btn){
 }
 
 // ══════════════════════════════════════════════
-// VOICE — SINGLE MIC, CLAUDE PARSES
+// SMART TEXT ENTRY — CLAUDE PARSES ONE LINE
 // ══════════════════════════════════════════════
-function toggleVoice(){
-  if(isListening){stopVoice();return;}
-  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(!SR){toast('Voice not supported — try Chrome or Safari on desktop');return;}
-
-  recognition=new SR();
-  recognition.lang='en-US';
-  recognition.continuous=true;
-  recognition.interimResults=true;
-
-  const btn=document.getElementById('big-mic');
-  const lbl=document.getElementById('mic-label');
-  const transcript=document.getElementById('voice-transcript');
-
-  btn.classList.add('listening');
-  lbl.textContent='Listening… tap again to stop';
-  transcript.classList.add('show');
-  transcript.textContent='';
-  isListening=true;
-
-  recognition.onresult=e=>{
-    let full='';
-    for(let i=0;i<e.results.length;i++)full+=e.results[i][0].transcript;
-    transcript.textContent=full;
-  };
-
-  recognition.onend=()=>{
-    if(isListening){
-      // Parse what was said
-      const said=transcript.textContent.trim();
-      if(said)parseVoiceWithClaude(said);
-      isListening=false;
-      btn.classList.remove('listening');
-      lbl.textContent='Tap to speak';
-    }
-  };
-
-  recognition.onerror=e=>{
-    isListening=false;
-    btn.classList.remove('listening');
-    lbl.textContent='Tap to speak';
-    if(e.error!=='aborted')toast('Voice error: '+e.error);
-  };
-
-  recognition.start();
-}
-
-function stopVoice(){
-  isListening=false;
-  if(recognition)recognition.stop();
-}
-
-async function parseVoiceWithClaude(transcript){
-  const parsing=document.getElementById('voice-parsing');
-  parsing.classList.add('show');
-
-  const today=new Date().toISOString().slice(0,4);
+async function smartParse(){
+  const input=document.getElementById('smart-input');
+  const text=input.value.trim();
+  if(!text){toast('Type a description first!');return;}
+  const btn=document.getElementById('smart-go-btn');
+  const result=document.getElementById('smart-result');
+  btn.classList.add('loading');btn.disabled=true;
+  result.classList.remove('show');
   try{
     const res=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         model:'claude-sonnet-4-20250514',
-        max_tokens:600,
+        max_tokens:400,
         messages:[{
           role:'user',
-          content:`You are a fashion wardrobe assistant. Parse this spoken item description and extract structured data. Return ONLY a valid JSON object, no markdown, no explanation:
-
-"${transcript}"
-
-JSON fields:
-{
-  "type": "one of: Jacket, Coat, Blazer, Dress, Skirt, Trousers, Jeans, Shorts, Top, Shirt, Blouse, Sweater, Cardigan, Shoes, Boots, Sneakers, Bag, Accessory, Other — or empty string if unclear",
-  "designer": "brand or designer name, empty string if not mentioned",
-  "name": "descriptive item name e.g. Black leather clutch bag, empty string if unclear",
-  "price": "numeric price only e.g. 1200, empty string if not mentioned",
-  "location": "one of NY, NJ, MAD — infer from New York/NYC=NY, New Jersey/NJ=NJ, Madrid/Spain/MAD=MAD, empty string if not mentioned",
-  "year": "4-digit year if mentioned e.g. 2023, empty string if not mentioned"
-}`
+          content:`Fashion wardrobe assistant. Parse this item description and return ONLY valid JSON, no markdown:
+"${text}"
+{"type":"one of: Jacket,Coat,Blazer,Dress,Skirt,Trousers,Jeans,Shorts,Top,Shirt,Blouse,Sweater,Cardigan,Shoes,Boots,Sneakers,Bag,Accessory,Other or empty","designer":"brand/designer or empty","name":"descriptive item name or empty","price":"number only or empty","location":"NY or NJ or MAD inferred from text or empty","year":"4-digit year or empty"}`
         }]
       })
     });
     const data=await res.json();
-    const text=data.content?.find(c=>c.type==='text')?.text||'{}';
-    const parsed=JSON.parse(text.replace(/```json|```/g,'').trim());
-    fillFromVoice(parsed);
-  }catch(e){
-    toast('Could not parse — check the fields manually');
-  }finally{
-    parsing.classList.remove('show');
-  }
-}
-
-function fillFromVoice(d){
-  const TYPES=['Jacket','Coat','Blazer','Dress','Skirt','Trousers','Jeans','Shorts','Top','Shirt','Blouse','Sweater','Cardigan','Shoes','Boots','Sneakers','Bag','Accessory','Other'];
-  const mark=(id,val)=>{
-    const el=document.getElementById(id);
-    if(!el||!val)return;
-    el.value=val;
-    el.classList.add('voice-filled');
-    setTimeout(()=>el.classList.remove('voice-filled'),3000);
-  };
-  if(d.type&&TYPES.includes(d.type))mark('f-type',d.type);
-  if(d.designer)mark('f-designer',d.designer);
-  if(d.name)mark('f-name',d.name);
-  if(d.price)mark('f-price',d.price);
-  if(d.location&&['NY','NJ','MAD'].includes(d.location))mark('f-location',d.location);
-  if(d.year){
-    const yr=parseInt(d.year);
-    if(yr>2000&&yr<=new Date().getFullYear()){
-      const el=document.getElementById('f-date');
-      el.value=yr+'-01-01';
-      el.classList.add('voice-filled');
+    const raw=data.content?.find(c=>c.type==='text')?.text||'{}';
+    const d=JSON.parse(raw.replace(/```json|```/g,'').trim());
+    const TYPES=['Jacket','Coat','Blazer','Dress','Skirt','Trousers','Jeans','Shorts','Top','Shirt','Blouse','Sweater','Cardigan','Shoes','Boots','Sneakers','Bag','Accessory','Other'];
+    const mark=(id,val)=>{
+      const el=document.getElementById(id);if(!el||!val)return;
+      el.value=val;el.classList.add('voice-filled');
       setTimeout(()=>el.classList.remove('voice-filled'),3000);
-    }
+    };
+    if(d.type&&TYPES.includes(d.type))mark('f-type',d.type);
+    if(d.designer)mark('f-designer',d.designer);
+    if(d.name)mark('f-name',d.name);
+    if(d.price)mark('f-price',d.price);
+    if(d.location&&['NY','NJ','MAD'].includes(d.location))mark('f-location',d.location);
+    if(d.year){const yr=parseInt(d.year);if(yr>2000&&yr<=new Date().getFullYear()){const el=document.getElementById('f-date');el.value=yr+'-01-01';el.classList.add('voice-filled');setTimeout(()=>el.classList.remove('voice-filled'),3000);}}
+    const count=Object.values(d).filter(Boolean).length;
+    result.textContent=count?'✓ Filled '+count+' field'+(count>1?'s':'')+' — review below and save!':'Hmm, couldn\'t extract much — try adding more detail';
+    result.classList.add('show');
+    input.value='';
+  }catch(e){
+    toast('Could not parse — check fields manually');
+  }finally{
+    btn.classList.remove('loading');btn.disabled=false;
   }
-  const filled=Object.values(d).filter(Boolean).length;
-  if(filled>0)toast('✓ Filled '+filled+' field'+(filled>1?'s':'')+' — review and save!');
-  else toast('Hmm, couldn\'t extract details — try again');
 }
 
 // ══════════════════════════════════════════════
@@ -860,14 +814,14 @@ function openFormWithAI(data){
   const nm=[data.color,data.name].filter(Boolean).join(' ').trim();
   if(nm)mark('f-name',nm);
   document.getElementById('f-location').value=curLoc;
-  if(aiPhotoBase64){pendingPhotos=[aiPhotoBase64,...pendingPhotos];renderPreviews();}
+  if(aiPhotoBase64){pendingPhotos=[aiPhotoBase64,...pendingPhotos];renderPhotoThumbs();}
 }
 
 function openFormManual(){
   document.getElementById('add-form').classList.add('open');
   document.getElementById('form-title').textContent='Add a new piece ✦';
   document.getElementById('f-location').value=curLoc;
-  if(aiPhotoBase64){pendingPhotos=[aiPhotoBase64,...pendingPhotos];renderPreviews();}
+  if(aiPhotoBase64){pendingPhotos=[aiPhotoBase64,...pendingPhotos];renderPhotoThumbs();}
 }
 
 // ══════════════════════════════════════════════
@@ -895,16 +849,17 @@ function resetAI(){
   aiPhotoBase64=null;bgRemovedBase64=null;capturedPhoto=null;
 }
 function cancelForm(){
-  if(isListening)stopVoice();
+  editingId=null;
   document.getElementById('add-form').classList.remove('open');
   document.getElementById('ai-panel').classList.remove('open');
-  document.getElementById('voice-transcript').classList.remove('show');
-  document.getElementById('voice-transcript').textContent='';
+  document.getElementById('edit-banner').classList.remove('show');
+  document.getElementById('smart-input').value='';
+  document.getElementById('smart-result').classList.remove('show');
   ['f-type','f-designer','f-name','f-date','f-price'].forEach(id=>{
     const el=document.getElementById(id);if(el){el.value='';el.classList.remove('ai-filled','voice-filled');}
   });
   document.getElementById('f-location').value=curLoc;
-  pendingPhotos=[];renderPreviews();
+  pendingPhotos=[];renderPhotoThumbs();
   document.getElementById('photo-input').value='';
   resetAI();
 }
@@ -914,14 +869,65 @@ function handlePhotos(e){
     const r=new FileReader();
     r.onload=ev=>{
       removeBackground(ev.target.result)
-        .then(c=>{pendingPhotos.push(c);renderPreviews();})
-        .catch(()=>{pendingPhotos.push(ev.target.result);renderPreviews();});
+        .then(c=>{pendingPhotos.push(c);renderPhotoThumbs();})
+        .catch(()=>{pendingPhotos.push(ev.target.result);renderPhotoThumbs();});
     };
     r.readAsDataURL(f);
   });
+  e.target.value='';
 }
-function renderPreviews(){
-  document.getElementById('photo-preview').innerHTML=pendingPhotos.map(p=>`<img src="${p}" alt=""/>`).join('');
+
+function renderPhotoThumbs(){
+  const container=document.getElementById('photo-thumbs');
+  if(!container)return;
+  container.innerHTML=pendingPhotos.map((p,i)=>`
+    <div class="photo-thumb-wrap">
+      <img src="${p}" alt="" title="${i===0?'Main photo — click another to make it main':'Click to make main'}" onclick="makeMainPhoto(${i})" class="${i===0?'main-photo':''}"/>
+      ${i===0?'<div class="main-badge">Main</div>':''}
+      <button class="remove-photo" onclick="removePhoto(${i})" title="Remove">✕</button>
+    </div>
+  `).join('');
+}
+
+function makeMainPhoto(i){
+  if(i===0)return;
+  const photo=pendingPhotos.splice(i,1)[0];
+  pendingPhotos.unshift(photo);
+  renderPhotoThumbs();
+  toast('✓ Set as main photo');
+}
+
+function removePhoto(i){
+  pendingPhotos.splice(i,1);
+  renderPhotoThumbs();
+}
+
+// legacy alias
+function renderPreviews(){renderPhotoThumbs();}
+
+
+// ── EDIT ITEM ──
+function editItem(id,e){
+  e&&e.stopPropagation();
+  const item=items.find(i=>i.id===id);if(!item)return;
+  editingId=id;
+  // Close AI panel, open form
+  document.getElementById('ai-panel').classList.remove('open');
+  document.getElementById('add-form').classList.add('open');
+  document.getElementById('form-title').textContent='Edit piece ✦';
+  document.getElementById('edit-banner').classList.add('show');
+  // Fill fields
+  document.getElementById('f-type').value=item.type||'';
+  document.getElementById('f-designer').value=item.designer||'';
+  document.getElementById('f-name').value=item.name||'';
+  document.getElementById('f-date').value=item.date||'';
+  document.getElementById('f-price').value=item.price||'';
+  document.getElementById('f-location').value=item.location||curLoc;
+  // Load existing photos
+  pendingPhotos=[...(item.photos||[])];
+  renderPhotoThumbs();
+  // Scroll form into view
+  document.getElementById('add-form').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 function saveItem(){
@@ -935,24 +941,44 @@ function saveItem(){
   if(!type&&!name&&!designer&&!pendingPhotos.length){
     toast('Add at least a photo, name, or type to save ✿');return;
   }
-  items.push({
-    id:Date.now(),
-    type:type||'Other',
-    name:name||(type||'Untitled'),
-    designer,date,price,location,
-    photos:[...pendingPhotos],
-    bgRemoved:pendingPhotos.some(p=>p.startsWith('data:image/png'))
-  });
-  persist(DB,items);
-  // Update location display if it differs from curLoc
-  if(location!==curLoc){
+
+  if(editingId){
+    // UPDATE existing item
+    const idx=items.findIndex(i=>i.id===editingId);
+    if(idx>-1){
+      items[idx]={
+        ...items[idx],
+        type:type||'Other',
+        name:name||(type||'Untitled'),
+        designer,date,price,location,
+        photos:[...pendingPhotos],
+        bgRemoved:pendingPhotos.some(p=>p.startsWith('data:image/png'))
+      };
+    }
+    persist(DB,items);
+    cancelForm();
     curLoc=location;
-    document.querySelectorAll('.loc-tab').forEach(t=>t.classList.remove('active'));
-    document.getElementById('tab-'+location)&&document.getElementById('tab-'+location).classList.add('active');
+    render();
+    toast('✓ Item updated!');
+  } else {
+    // ADD new item
+    items.push({
+      id:Date.now(),
+      type:type||'Other',
+      name:name||(type||'Untitled'),
+      designer,date,price,location,
+      photos:[...pendingPhotos],
+      bgRemoved:pendingPhotos.some(p=>p.startsWith('data:image/png'))
+    });
+    persist(DB,items);
+    if(location!==curLoc){
+      curLoc=location;
+      document.querySelectorAll('.loc-tab').forEach(t=>t.classList.remove('active'));
+    }
+    cancelForm();
+    render();
+    toast('✓ Saved to '+LOC[location]);
   }
-  cancelForm();
-  render();
-  toast('✓ Saved to '+LOC[location]);
 }
 
 function deleteItem(id,e){
@@ -992,7 +1018,8 @@ function render(){
           </div>
           <div class="item-actions-c" onclick="event.stopPropagation()">
             <button class="icon-btn tl" onclick="addToLookQuick(${item.id})">+ Look</button>
-            <button class="icon-btn" onclick="deleteItem(${item.id},event)">✕</button>
+            <button class="icon-btn edit" onclick="editItem(${item.id},event)">✏️ Edit</button>
+            <button class="icon-btn del" onclick="deleteItem(${item.id},event)">🗑️</button>
           </div>
         </div>
       </div>`;
